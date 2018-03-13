@@ -45,10 +45,11 @@ class FriendshipsController extends Controller
 
     public function follow($id)
     {
-      //sending notifications,emails,broadcasting
+      
       $resp =  Auth::user()->follow($id);
 
-      // User::find($id)->notify(new \Black_Magik\Notifications\NewFriendRequest(Auth::user()));
+      //sending notifications,emails,broadcasting
+      // User::find($id)->notify(new \Nyabingi\Notifications\NewFollower(Auth::user()));
 
     //   return $resp;
       return redirect()->back();

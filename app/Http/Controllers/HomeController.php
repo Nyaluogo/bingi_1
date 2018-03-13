@@ -77,4 +77,9 @@ class HomeController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function notifications()
+    {
+        return view('notifications');
+    }
 }

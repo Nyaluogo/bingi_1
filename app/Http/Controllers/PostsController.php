@@ -67,37 +67,37 @@ class PostsController extends Controller
 
         if($request->display_options == 1)
         {
-          $stream = Image::make(Storage::disk('public')->get($image))->fit(400, 400)->stream();
+          $stream = Image::make(Storage::disk('public')->get($image))->fit(400, 400)->orientate()->stream();
           Storage::disk('public')->put($thumb, $stream);
         }
 
         if($request->display_options == 2)
         {
-          $stream = Image::make(Storage::disk('public')->get($image))->fit(600, 600)->stream();
+          $stream = Image::make(Storage::disk('public')->get($image))->fit(600, 600)->orientate()->stream();
           Storage::disk('public')->put($thumb, $stream);
         }
 
         if($request->display_options == 3)
         {
-          $stream = Image::make(Storage::disk('public')->get($image))->fit(800, 800)->stream();
+          $stream = Image::make(Storage::disk('public')->get($image))->fit(800, 800)->orientate()->stream();
           Storage::disk('public')->put($thumb, $stream);
         }
 
         if($request->display_options == 4)
         {
-          $stream = Image::make(Storage::disk('public')->get($image))->fit(900, 900)->stream();
+          $stream = Image::make(Storage::disk('public')->get($image))->fit(900, 900)->orientate()->stream();
           Storage::disk('public')->put($thumb, $stream);
         }
 
         if($request->display_options == 5)
         {
-          $stream = Image::make(Storage::disk('public')->get($image))->fit(1024, 1024)->stream();
+          $stream = Image::make(Storage::disk('public')->get($image))->fit(1024, 1024)->orientate()->stream();
           Storage::disk('public')->put($thumb, $stream);
         }
 
         if($request->display_options == 6)
         {
-          $stream = Image::make(Storage::disk('public')->get($image))->fit(1280, 1280)->stream();
+          $stream = Image::make(Storage::disk('public')->get($image))->fit(1280, 1280)->orientate()->stream();
           Storage::disk('public')->put($thumb, $stream);
         }
         if($request->display_options > 6 || $request->display_options < 0)
@@ -110,7 +110,7 @@ class PostsController extends Controller
         if($request->watermark_options == 1)
         {
           $watermark =  Image::make(Storage::disk('public')->get('/watermark/Stark_Watermark.png'));
-          $stream = Image::make(Storage::disk('public')->get($thumb))->insert($watermark, 'center')->stream();
+          $stream = Image::make(Storage::disk('public')->get($thumb))->insert($watermark, 'center')->orientate()->stream();
           Storage::disk('public')->put($thumb, $stream);
         }
 

@@ -211,6 +211,11 @@ Route::group(['middleware' => ['auth', 'account_check']],function(){
           'uses' => 'CommentThreadController@thread',
           'as' => 'commentThread'
         ]);
+
+        Route::get('/notifications',[
+          'uses' => 'HomeController@notifications',
+          'as' => 'notifications'
+        ]);
     
 });
 

@@ -388,7 +388,7 @@
             </div>
           </li>
             @endif
-          {{--  <li class="nav-item dropdown">
+         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Notifications"
               aria-expanded="false" data-animation="scale-up" role="button">
                 <i class="icon wb-bell" aria-hidden="true"></i>
@@ -465,12 +465,12 @@
                 <a class="dropdown-menu-footer-btn" href="javascript:void(0)" role="button">
                     <i class="icon wb-settings" aria-hidden="true"></i>
                   </a>
-                <a class="dropdown-item" href="javascript:void(0)" role="menuitem">
+                <a class="dropdown-item" href=" {{route('notifications')}} " role="menuitem">
                     All notifications
                   </a>
               </div>
             </div>
-          </li>  --}}
+          </li>
           <li class="nav-item">
             <a class="nav-link"  href="{{ route('product.shoppingCart') }}" title="Messages"
               aria-expanded="false" data-animation="scale-up" role="button">
