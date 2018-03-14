@@ -216,6 +216,11 @@ Route::group(['middleware' => ['auth', 'account_check']],function(){
           'uses' => 'HomeController@notifications',
           'as' => 'notifications'
         ]);
+
+        Route::get('/arvr',[
+          'uses' => 'HomeController@ar_vr_test',
+          'as' => 'ar_vr'
+        ]);
     
 });
 

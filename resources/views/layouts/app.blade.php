@@ -705,6 +705,7 @@
   <script src="{{ asset('global/vendor/asscrollable/jquery-asScrollable.min599c.js?v4.0.2') }}"></script>
   <script src="{{ asset('global/vendor/ashoverscroll/jquery-asHoverScroll.min599c.js?v4.0.2') }}"></script>
 
+    @yield('scripts')
   <!-- Plugins -->
   <script src="{{ asset('global/vendor/switchery/switchery.min599c.js?v4.0.2') }}"></script>
   <script src="{{ asset('global/vendor/intro-js/intro.min599c.js?v4.0.2') }}"></script>

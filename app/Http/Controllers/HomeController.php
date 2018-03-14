@@ -82,4 +82,9 @@ class HomeController extends Controller
     {
         return view('notifications');
     }
+
+    public function ar_vr_test()
+    {
+        return view('ar-vr');
+    }
 }
