@@ -127,4 +127,16 @@ class User extends  Authenticatable
 
         return $thread;
     }
+
+    public function getAllUsers()
+    {
+        $users = User::all();
+        return $users;
+    }
+
+    public function getAllUploads()
+    {
+        $uploads = Post::all();
+        return $uploads;
+    }
 }

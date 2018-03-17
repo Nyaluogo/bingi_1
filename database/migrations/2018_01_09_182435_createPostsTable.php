@@ -37,9 +37,11 @@ class CreatePostsTable extends Migration
             $table->string('tags')->nullable();
             $table->string('medium')->nullable();
             $table->string('material')->nullable();
+
             $table->string('height')->nullable();
             $table->string('length')->nullable();
             $table->string('width')->nullable();
+            
             $table->string('mature_content_type')->nullable();
             $table->string('comment_options')->nullable();
             $table->string('sharing_options')->nullable();

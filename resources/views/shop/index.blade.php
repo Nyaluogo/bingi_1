@@ -59,7 +59,7 @@
                 <div class="card-block">
                   <h4 class="card-title">TITLE: {{ $product->title }}</h4>
                   <h4 class="card-title">ARTIST: {{ $product->user->name }}</h4>
-                  <h4 class="card-title">PRICE: {{ $product->price }}</h4>
+                  <h4 class="card-title">PRICE: {{ $product->price }}@currency('USD')</h4>
                   <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-default pull-right" role="button"> Add to Cart</a></p>
                 </div>
               </div>

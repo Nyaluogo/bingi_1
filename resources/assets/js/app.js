@@ -18,6 +18,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('follow', require('./components/Follow.vue'));
 Vue.component('favourite', require('./components/Favourite.vue'));
+// Vue.component('pricing', require('./components/Pricing.vue'));
 
 
 

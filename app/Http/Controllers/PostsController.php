@@ -2,6 +2,7 @@
 
 namespace Nyabingi\Http\Controllers;
 
+use Nyabingi\User;
 use Nyabingi\Post;
 use Nyabingi\Download;
 use Auth;
@@ -32,13 +33,55 @@ class PostsController extends Controller
         ]);
     }
 
+    public function complete_details($id)
+    {
+      $artwork = Post::where('id',$id)->first();
+
+      
+      return view('portfolio.submit2',[
+        'artwork' => $artwork,
+      ]);
+    }
+
+    public function update_shipping_details($id)
+    {
+      $artwork = Post::where('id',$id)->first();
+
+      
+      return view('portfolio.shipping_details',[
+        'artwork' => $artwork,
+      ]);
+    }
+
+    public function update_pricing_details($id)
+    {
+      $artwork = Post::where('id',$id)->first();
+
+      
+      return view('portfolio.pricing_details',[
+        'artwork' => $artwork,
+      ]);
+    }
+
+    public function confirm_upload_details($id)
+    {
+      $artwork = Post::where('id',$id)->first();
+
+      dd($artwork);
+      return view('portfolio.confirm_details',[
+        'artwork' => $artwork,
+      ]);
+    }
+
 
     public function store_image(Request $request)
     {
         $this->validate($request, [
-            'image_file' => 'required|image|max:4096|mimes:jpeg,png,jpg,gif,svg',
+            'image_file' => 'required|image|max:25096|mimes:jpeg,png,jpg,gif,svg',
             
         ]);
+
+        
         
         $file = $request->file('image_file');
 
@@ -116,7 +159,9 @@ class PostsController extends Controller
 
         if($request->price)
         {
-          $commission = 0.2;
+          $commission = 1.2;
+
+          // $price = $request->price * $commision;
         }
 
         //upload details in the database*/
@@ -129,21 +174,25 @@ class PostsController extends Controller
             'is_active' => 'false',
             'description' => $request->description,
             'watermark_options' => $request->watermark_options,
-            'tags' => serialize($request->tags),
+            // 'tags' => serialize($request->tags),
             'display_options' => $request->display_options,
             'category' => $request->category,
-            'comment_options' => $request->comment_options,
+            'critique_options' => $request->critique_options,
             'sharing_options' => $request->sharing_options,
-            'price' => $request->price,
+            'year_of_completion' => $request->year_of_completion,
             'download_options' => $request->download_options,
             'mature_content_type' => $request->mature_options,
-
+            'original_sale_option' => $request->original_sale_option,
+            'print_type' => $request->type_of_print,
+            'copyright_option' => $request->copyright_option,
         ]);
+
+        
 
         if($upload)
         {
             Session::flash('success','Image uploaded successfully');
-            return redirect()->back();
+            return redirect()->route('portfolio.submit2',$upload->id);
         }else{
             Session::flash('fail','☹Oops!.. an error occured, please try again');
             return redirect()->back();
@@ -260,6 +309,113 @@ class PostsController extends Controller
             return redirect()->back();
         }
 
+    }
+
+    // submit details from form2
+    public function submit_details(Request $request)
+    {
+      $artwork = Post::find($request->artwork_id);
+
+      //upload details in the database*/
+      $upload = $artwork->update([
+        'user_id' => Auth::id(),
+        
+        'medium' => $request->medium,
+        'is_active' => 'false',
+        'material' => $request->material,
+        'width' => $request->width,
+        'tags' => serialize($request->tags),
+        'length' => $request->length,
+        'height' => $request->height,
+        'packaging' => $request->packaging,
+        'framing_options' => $request->framing_options,
+        'multipanel_options' => $request->multipanel_options,
+        
+
+    ]);
+
+    if($upload)
+    {
+        Session::flash('success','update successfully');
+        return redirect()->route('portfolio.update.shipping',$artwork->id);
+    }else{
+        Session::flash('fail','☹Oops!.. an error occured, please try again');
+        return redirect()->back();
+    }
+
+     
+    }
+
+    // submit shipping details
+    public function submit_shipping_details(Request $request)
+    {
+      $artwork = Post::find($request->artwork_id);
+
+      $artist = User::find($artwork->user_id);
+
+      $update_artist_details = $artist->update([
+        'first_name' => $request->first_name,
+        'last_name' => $request->last_name,
+        'phone_number' => $request->phone_number,
+        'country' => $request->country,
+        'city' => $request->city,
+        'address_1' => $request->address_1,
+        'address_2' => $request->address_2,
+        'region' => $request->region,
+        'postal_code' => $request->postal_code,
+        
+      ]);
+
+      //upload details in the database*/
+      $upload = $artwork->update([
+        'user_id' => Auth::id(),
+        
+        'weight' => $request->weight,
+        'is_active' => 'false',
+       
+        
+
+    ]);
+
+    if($upload)
+    {
+        Session::flash('success','updated successfully');
+        return redirect()->route('portfolio.update.pricing',$artwork->id);
+    }else{
+        Session::flash('fail','☹Oops!.. an error occured, please try again');
+        return redirect()->back();
+    }
+      
+    }
+
+    // submit pricing details
+    public function submit_pricing_details(Request $request)
+    {
+      $artwork = Post::find($request->artwork_id);
+
+
+      //upload details in the database*/
+      $upload = $artwork->update([
+        
+        'print_price' => $request->print_price,
+        'is_active' => 'false',
+        'price' => $request->price,
+        'number_of_prints_for_sale' => $request->number_of_prints_for_sale,
+        'print_options' => serialize($request->print_options),
+        'type_of_print' => $request->type_of_print,
+        
+
+    ]);
+
+    if($upload)
+    {
+        Session::flash('success','update successfully');
+        return redirect()->route('portfolio.confirmation',$artwork->id);
+    }else{
+        Session::flash('fail','☹Oops!.. an error occured, please try again');
+        return redirect()->back();
+    }
+      
     }
 
     public function list()

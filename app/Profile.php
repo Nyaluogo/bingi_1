@@ -28,6 +28,12 @@ class Profile extends Model
         'gender',
         'ip_address',
         'device',
+        
+        'address_1',
+        'address_2',
+        'region',
+        'postal_code',
+
     ];
   
       public function user()

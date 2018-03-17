@@ -174,8 +174,8 @@
               <span class="sr-only">Toggle Search</span>
             </a>
           </li>
-          <li class="nav-item hidden-sm-down" id="toggleFullscreen">
-                <a class="nav-link icon icon-plus" href="{{ route('portfolio.submit') }}" role="button">
+          <li class="nav-item hidden-sm-down " id="toggleFullscreen">
+                <a class="nav-link icon icon-plus btn btn-outline" href="{{ route('portfolio.submit') }}" role="button">
                     <span>Submit Artwork</span>
                 </a>
             </li>
@@ -373,6 +373,9 @@
                     
               <a class="dropdown-item" href="{{ route('profile',['id' => Auth::id() ]) }}" role="menuitem"><i class="icon wb-user" aria-hidden="true"></i> Profile</a>
               <a class="dropdown-item" href="{{ route('profile',['id' => Auth::id() ]) }}" role="menuitem"><i class="icon wb-payment" aria-hidden="true"></i> Orders</a>
+              @if(Auth::user()->user_level == 'founder')
+                <a class="dropdown-item" href="{{ route('founder.dashboard') }}" role="menuitem"><i class="icon wb-star" aria-hidden="true"></i> Founder dashboard </a>
+              @endif
               <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Settings</a>
               <div class="dropdown-divider" role="presentation"></div>
               
@@ -686,9 +689,9 @@
         
           <!-- Footer -->
           <footer class="site-footer">
-            <div class="site-footer-legal">© 2018 <a href="https://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Nyabingi</a></div>
+            <div class="site-footer-legal">© 2018 <a href="#">Nyabingi</a></div>
             <div class="site-footer-right">
-              Crafted with <i class="red-600 wb wb-heart"></i> by <a href="https://themeforest.net/user/creation-studio">Edwin Nyaluogo</a>
+              Crafted with <i class="red-600 wb wb-heart"></i> by <a href="#">Black Magik Creative Agency</a>
             </div>
           </footer>
 </div>

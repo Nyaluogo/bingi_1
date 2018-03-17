@@ -117,10 +117,46 @@ Route::group(['middleware' => ['auth', 'account_check']],function(){
         'as' => 'portfolio.store'
       ]);
 
+      //redirects to complete artwork details page
+      Route::get('/portfolio/next-step/{id}',[
+        'uses' => 'PostsController@complete_details',
+        'as' => 'portfolio.submit2'
+      ]);
+
       //redirects to update artwork page
       Route::get('/portfolio/update/{id}',[
         'uses' => 'PostsController@update_art_page',
         'as' => 'portfolio.update'
+      ]);
+
+       //redirects to update artwork shipping page
+       Route::get('/portfolio/shipping/{id}',[
+        'uses' => 'PostsController@update_shipping_details',
+        'as' => 'portfolio.update.shipping'
+      ]);
+
+      //redirects to update artwork pricing page
+      Route::get('/portfolio/pricing/{id}',[
+        'uses' => 'PostsController@update_pricing_details',
+        'as' => 'portfolio.update.pricing'
+      ]);
+
+      // submits artwork shipping details
+      Route::post('/portfolio/shipping',[
+        'uses' => 'PostsController@submit_shipping_details',
+        'as' => 'portfolio.shipping'
+      ]);
+
+      // submits artwork pricing details
+      Route::post('/portfolio/pricing',[
+        'uses' => 'PostsController@submit_pricing_details',
+        'as' => 'portfolio.pricing'
+      ]);
+
+      //redirects to confirmation page after upload
+      Route::get('/portfolio/confirm/{id}',[
+        'uses' => 'PostsController@confirm_upload_details',
+        'as' => 'portfolio.confirmation'
       ]);
 
       //filters artwork
@@ -129,7 +165,7 @@ Route::group(['middleware' => ['auth', 'account_check']],function(){
         'as' => 'filter'
       ]);
 
-      // submits artwork
+      // search artwork
       Route::post('/search',[
         'uses' => 'PostsController@search',
         'as' => 'search'
@@ -139,6 +175,12 @@ Route::group(['middleware' => ['auth', 'account_check']],function(){
       Route::post('/portfolio/update/art',[
         'uses' => 'PostsController@update_artwork',
         'as' => 'portfolio.update'
+      ]);
+
+       // submits artwork
+       Route::post('/portfolio/details',[
+        'uses' => 'PostsController@submit_details',
+        'as' => 'portfolio.details'
       ]);
 
       // critiques artwork
@@ -220,6 +262,12 @@ Route::group(['middleware' => ['auth', 'account_check']],function(){
         Route::get('/arvr',[
           'uses' => 'HomeController@ar_vr_test',
           'as' => 'ar_vr'
+        ]);
+
+        // redirect to founder's dashboard
+        Route::get('/founder/dashoard',[
+          'uses' => 'FounderController@index',
+          'as' => 'founder.dashboard'
         ]);
     
 });

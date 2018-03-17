@@ -40,15 +40,25 @@ class Post extends Model
         'medium',
         'material',
         'height',
-        'lenght',
+        'length',
         'width',
         'mature_content_type',
-        'comment_options',
+        'critique_options',
         'sharing_options',
         'download_options',
         'watermark_options',
         'display_options',
-        'critique_options'
+        'critique_options',
+
+        'copyright_option',
+        'style',
+        'packaging',
+        'framing_options',
+        'multipanel_options',
+        'weight',
+        'original_sale_option',
+        'print_price',
+       
         ];
 
     public function user()
