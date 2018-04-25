@@ -48,7 +48,7 @@ class User extends  Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'token',
     ];
 
       /*Return true if user is verified and return a boolean*/

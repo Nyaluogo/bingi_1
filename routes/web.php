@@ -56,6 +56,12 @@ Route::get('/delete/{id}',[
   'as' => 'product.delete'
 ]);
 
+//redirects to submit artwork page
+Route::get('/artwork/view/{id}',[
+  'uses' => 'PostsController@view_artwork',
+  'as' => 'artwork.view'
+]);
+
 
 //get image from storage
 Route::get('storage/artwork/{id}','PostsController@artwork');
@@ -157,6 +163,12 @@ Route::group(['middleware' => ['auth', 'account_check']],function(){
       Route::get('/portfolio/confirm/{id}',[
         'uses' => 'PostsController@confirm_upload_details',
         'as' => 'portfolio.confirmation'
+      ]);
+
+      // submits artwork pricing details
+      Route::post('/portfolio/confirm',[
+        'uses' => 'PostsController@confirm_upload',
+        'as' => 'portfolio.confirm'
       ]);
 
       //filters artwork

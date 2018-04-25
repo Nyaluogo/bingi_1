@@ -62,23 +62,40 @@
 
                   <div class="example example-buttons">
 
-                      @if($post->price > 0)
-                      
-                      <a href="{{ route('product.addToCart', ['id' => $post->id]) }}" class="btn btn-default " role="button"><i class="icon wb-shopping-cart" aria-hidden="true"></i></a>
-                      @endif
 
-                      @if($post->download_options == true)
-                        <button class="btn btn-inverse" type="button">
-                            <a href="{{ route('product.download', ['id' => $post->id]) }}" class="pull-right"><i class="icon wb-download" aria-hidden="true"></i></a>
+                      <div class="btn-group" aria-label="Button group with nested dropdown" role="group">
+                          <button class="btn btn-default" type="button">
+                              <a href="{{ route('artwork.view', ['id' => $post->id]) }}" class="btn btn-default"><i class="icon wb-binoculars" aria-hidden="true">View</i></a>
+      
+                          </button>
 
-                        </button>
-                      @endif
+                          @if($post->price > 0)
+                              <a href="{{ route('product.addToCart', ['id' => $post->id]) }}" class="btn btn-default " role="button"><i class="icon wb-shopping-cart" aria-hidden="true"></i></a>
+                          @endif
 
-                      @if(in_array(Auth::id(),$post->favouriters()) == true)
-                      <a href="{{ route('unfavourite', ['id' => $post->id]) }}" class="btn btn-default " role="button"><i class="icon wb-star-outline" aria-hidden="true"></i>{{ count($post->favouriters()) }}</a>
-                      @else
-                          <a href="{{ route('favourite', ['id' => $post->id]) }}" class="btn btn-default " role="button"><i class="icon wb-star" aria-hidden="true"></i>{{ count($post->favouriters()) }}</a>
-                      @endif
+                          @if($post->download_options == true)
+                              <button class="btn btn-default" type="button">
+                                  <a href="{{ route('product.download', ['id' => $post->id]) }}" class="pull-right"><i class="icon wb-download" aria-hidden="true"></i></a>
+                              </button>
+                          @endif
+
+                          @if(in_array(Auth::id(),$post->favouriters()) == true)
+                               <a href="{{ route('unfavourite', ['id' => $post->id]) }}" class="btn btn-default " role="button"><i class="icon wb-star-outline" aria-hidden="true"></i>{{ count($post->favouriters()) }}</a>
+                          @else
+                              <a href="{{ route('favourite', ['id' => $post->id]) }}" class="btn btn-default " role="button"><i class="icon wb-star" aria-hidden="true"></i>{{ count($post->favouriters()) }}</a>
+                          @endif
+                          
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" id="exampleGroupDrop1"
+                              data-toggle="dropdown" aria-expanded="false">
+                              Share
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="exampleGroupDrop1" role="menu">
+                              <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Facebook</a>
+                              <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Pinterest</a>
+                            </div>
+                          </div>
+                        </div>
 
                       @if($post->comment_options == "true")
                     

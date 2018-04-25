@@ -67,7 +67,7 @@ class PostsController extends Controller
     {
       $artwork = Post::where('id',$id)->first();
 
-      dd($artwork);
+      // dd($artwork);
       return view('portfolio.confirm_details',[
         'artwork' => $artwork,
       ]);
@@ -353,7 +353,7 @@ class PostsController extends Controller
 
       $artist = User::find($artwork->user_id);
 
-      $update_artist_details = $artist->update([
+      $update_artist_details = $artist->profile->update([
         'first_name' => $request->first_name,
         'last_name' => $request->last_name,
         'phone_number' => $request->phone_number,
@@ -416,6 +416,33 @@ class PostsController extends Controller
         return redirect()->back();
     }
       
+    }
+
+    public function confirm_upload(Request $request)
+    {
+      $artwork = Post::find($request->artwork_id);
+
+      //upload details in the database*/
+        $upload = $artwork->update([
+          
+          'print_price' => $request->print_price,
+          'is_active' => 'false',
+          'price' => $request->price,
+          'number_of_prints_for_sale' => $request->number_of_prints_for_sale,
+          'print_options' => serialize($request->print_options),
+          'type_of_print' => $request->type_of_print,
+          
+
+      ]);
+
+      if($upload)
+      {
+          Session::flash('success','update successfully');
+          return redirect()->route('home');
+      }else{
+          Session::flash('fail','☹Oops!.. an error occured, please try again');
+          return redirect()->back();
+      }
     }
 
     public function list()
@@ -511,6 +538,18 @@ class PostsController extends Controller
 
         return view('home',[
           'feed' => $feed,
+          'favourites' => $favourites,
+      ]);
+    }
+
+    public function view_artwork($id)
+    {
+      $artwork = Post::find($id);
+
+      $favourites = Favourite::all();
+
+        return view('portfolio.view_artwork',[
+          'artwork' => $artwork,
           'favourites' => $favourites,
       ]);
     }

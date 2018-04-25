@@ -147,6 +147,9 @@
         <span class="sr-only">Toggle Search</span>
         <i class="icon wb-search" aria-hidden="true"></i>
       </button>
+
+      
+
     </div>
 
     <div class="navbar-container container-fluid">
@@ -174,16 +177,21 @@
               <span class="sr-only">Toggle Search</span>
             </a>
           </li>
-          <li class="nav-item hidden-sm-down " id="toggleFullscreen">
-                <a class="nav-link icon icon-plus btn btn-outline" href="{{ route('portfolio.submit') }}" role="button">
-                    <span>Submit Artwork</span>
-                </a>
-            </li>
-            <li class="nav-item hidden-sm-down" id="toggleFullscreen">
-                    <a class="nav-link icon icon-plus" href="{{ route('shop.index') }}" role="button">
-                        <span>Shop</span>
-                    </a>
-                </li>
+          <button type="button" class="nav-link" >
+            <a  href="{{ route('portfolio.submit') }}" role="button">
+                <span>Upload Artwork</span>
+            </a>
+            {{--  <span class="sr-only">Toggle Search</span>  --}}
+            <i class="icon wb-upload" aria-hidden="true"></i>
+          </button>
+
+          
+
+          {{--  <li class="nav-item hidden-sm-down" >
+              <a class="nav-link " href="{{ route('shop.index') }}" role="button">
+                  <span>Shop</span>
+              </a>
+          </li>  --}}
           <li class="nav-item dropdown dropdown-fw dropdown-mega">
             <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="fade"
               role="button">Menu <i class="icon wb-chevron-down-mini" aria-hidden="true"></i></a>
@@ -520,10 +528,19 @@
                 <li class="site-menu-category">General</li>
                 <li class="site-menu-item has-sub active open">
                   <a href="{{ route('home') }}">
-                                    <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
-                                    <span class="site-menu-title">Home</span>
-                                        
-                                </a>
+                      <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+                      <span class="site-menu-title">Home</span>
+                          
+                  </a>
+                  
+                </li>
+
+                <li class="site-menu-item has-sub active open">
+                  <a href="{{ route('shop.index') }}">
+                      <i class="site-menu-icon wb-dashboard" aria-hidden="true"></i>
+                      <span class="site-menu-title">Shop</span>
+                          
+                  </a>
                   
                 </li>
                
@@ -679,6 +696,10 @@
     
           <!-- Page -->
            {{--  page content goes here  --}}
+           <div class="alert alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <strong>Warning!</strong> Best check yo self, you're not looking too good.
+            </div>
 
             @yield('content')
   
